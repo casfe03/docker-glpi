@@ -36,14 +36,18 @@ php-bz2 \
 
 VOLUME /app
 
+# Change the Apache port to a non-privileged port
+RUN sed -i 's/80/8080/' /etc/apache2/ports.conf \
+    && sed -i 's/:80/:8080/' /etc/apache2/sites-available/*.conf
+
 # Copy entrypoint make it as executable and run it
 COPY entrypoint.sh /opt/
 RUN chmod +x /opt/entrypoint.sh
 RUN chmod -R 777 /app
 RUN chmod -R 777 /etc/cron.d
 RUN chmod -R 777 /var/run
-RUN chmod 777 /etc/apache2/apache2.conf \
-    && chmod 777 /etc/apache2/sites-available/000-default.conf
+RUN chmod -R 777 /etc/apache2
+RUN chmod -R 777 /var/log/apache2
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 #ENTRYPOINT [ "/bin/bash", "-c", "source ~/.bashrc && /opt/entrypoint.sh ${@}", "--" ]
