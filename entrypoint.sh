@@ -36,7 +36,7 @@ fi
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 #Setup vhost
 cat > /etc/apache2/sites-available/000-default.conf << EOF
-<VirtualHost *:80>
+<VirtualHost *:8080>
         DocumentRoot /app/glpi
 
         <Directory /app/glpi>
