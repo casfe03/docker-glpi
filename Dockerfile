@@ -39,9 +39,9 @@ VOLUME /app
 # Copy entrypoint make it as executable and run it
 COPY entrypoint.sh /opt/
 RUN chmod +x /opt/entrypoint.sh
-RUN chmod -R 775 /app
-RUN chmod 644 /etc/apache2/apache2.conf \
-    && chmod 644 /etc/apache2/sites-available/000-default.conf
+RUN chmod -R 777 /app
+RUN chmod 777 /etc/apache2/apache2.conf \
+    && chmod 777 /etc/apache2/sites-available/000-default.conf
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 #ENTRYPOINT [ "/bin/bash", "-c", "source ~/.bashrc && /opt/entrypoint.sh ${@}", "--" ]
