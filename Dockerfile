@@ -36,8 +36,8 @@ VOLUME /app
 # Copy entrypoint make it as executable and run it
 COPY entrypoint.sh /opt/
 RUN chmod +x /opt/entrypoint.sh
-#ENTRYPOINT ["/opt/entrypoint.sh"]
-ENTRYPOINT [ "/bin/bash", "-c", "source ~/.bashrc && /opt/entrypoint.sh ${@}", "--" ]
+ENTRYPOINT ["/opt/entrypoint.sh"]
+#ENTRYPOINT [ "/bin/bash", "-c", "source ~/.bashrc && /opt/entrypoint.sh ${@}", "--" ]
 
 #Expose ports
 #EXPOSE 80 443
