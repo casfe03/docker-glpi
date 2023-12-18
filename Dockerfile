@@ -41,6 +41,7 @@ COPY entrypoint.sh /opt/
 RUN chmod +x /opt/entrypoint.sh
 RUN chmod -R 777 /app
 RUN chmod -R 777 /etc/cron.d
+RUN chmod -R 777 /var/run
 RUN chmod 777 /etc/apache2/apache2.conf \
     && chmod 777 /etc/apache2/sites-available/000-default.conf
 
