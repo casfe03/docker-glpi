@@ -1,3 +1,6 @@
+# Definir o usuário não-root (por exemplo, UID 1001)
+USER 1001
+
 #Based Image
 FROM debian:11.6
 
@@ -36,6 +39,10 @@ VOLUME /app
 # Copy entrypoint make it as executable and run it
 COPY entrypoint.sh /opt/
 RUN chmod +x /opt/entrypoint.sh
+RUN chmod -R 775 /app
+RUN chmod 644 /etc/apache2/apache2.conf \
+    && chmod 644 /etc/apache2/sites-available/000-default.conf
+
 ENTRYPOINT ["/opt/entrypoint.sh"]
 #ENTRYPOINT [ "/bin/bash", "-c", "source ~/.bashrc && /opt/entrypoint.sh ${@}", "--" ]
 
